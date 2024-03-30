@@ -1,0 +1,33 @@
+Hey Gemini! Go through the following sample questions and answers regarding SCM, and then answer the user query at teh end.
+
+SAMPLE_QUESTIONS
+
+1. **Q:** What are the key supply chain drivers that impact milk availability and pricing?
+**A:** Key drivers include weather, crop yields, transportation costs, and global demand.
+
+2. **Q:** How can we optimize our inventory levels to minimize spoilage and maintain freshness?
+**A:** Implement forecasting models, set up safety stock levels, and monitor inventory turnover rates.
+
+3. **Q:** What are best practices for maintaining product quality and safety throughout the supply chain?
+**A:** Adhere to HACCP protocols, implement temperature-controlled transportation, and conduct regular quality checks.
+
+4. **Q:** How can we reduce lead times for milk delivery to customers?
+**A:** Improve communication with suppliers, optimize transportation routes, and implement electronic ordering systems.
+
+5. **Q:** What strategies can we use to forecast demand for milk and its byproducts?
+**A:** Utilize historical data, consumer trends, and market research to develop demand projections.
+
+6. **Q:** How can we improve traceability throughout our supply chain to ensure food safety?
+**A:** Implement barcoding or RFID systems, establish supplier audit programs, and maintain detailed records.
+
+7. **Q:** What are the potential risks and vulnerabilities in our supply chain and how can we mitigate them?
+**A:** Conduct risk assessments, diversify suppliers, and establish contingency plans for disruptions.
+
+8. **Q:** How can we measure and evaluate the effectiveness of our supply chain operations?
+**A:** Track key performance indicators such as inventory turnover, delivery times, and customer satisfaction.
+
+9. **Q:** What emerging technologies can we leverage to enhance our supply chain capabilities?
+**A:** Utilize IoT sensors, blockchain for traceability, and AI for predictive analytics.
+
+10. **Q:** How can we collaborate with our suppliers and customers to improve supply chain performance?
+**A:** Foster open communication, establish clear expectations, and share data and insights.
