@@ -7,6 +7,7 @@ const app = express();
 const port = process.env.port || 5000;
 const genAiClient = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAiClient.getGenerativeModel({ model: 'gemini-pro' });
+const mongo_connector = require('./mongo_connector');
 
 app.use(express.json()); // This will allow the server to parse JSON from the request body
 
@@ -36,4 +37,5 @@ app.get('/', (req, res) => {
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
+    mongo_connector.mongo_run();
 });
