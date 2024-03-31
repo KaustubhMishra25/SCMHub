@@ -12,7 +12,7 @@ app.use(express.json()); // This will allow the server to parse JSON from the re
 
 let sample_queries;
 
-fs.readFile('D:/stuff/dev/SupplyHub/backend/train-queries.txt', (err, data) => {
+fs.readFile('D:/dev/SCMHub/backend/train-queries.txt', (err, data) => {
     if (err) throw err;
     sample_queries = data.toString();
 });
