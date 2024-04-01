@@ -8,12 +8,14 @@ const port = process.env.port || 5000;
 const genAiClient = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAiClient.getGenerativeModel({ model: 'gemini-pro' });
 const mongo_connector = require('./mongo_connector');
+const router = require('./mongo_routes');
 
-app.use(express.json()); // This will allow the server to parse JSON from the request body
+app.use(express.json());
+app.use(router)
 
 let sample_queries;
 
-fs.readFile('D:/dev/SCMHub/backend/train-queries.txt', (err, data) => {
+fs.readFile('D:/stuff/dev/SCMHub/backend/train-queries.txt', (err, data) => {
     if (err) throw err;
     sample_queries = data.toString();
 });
