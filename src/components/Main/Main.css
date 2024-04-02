@@ -5,6 +5,28 @@
     position: relative;
 }
 
+.download-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 17px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.upload-button {
+    background: none;
+    border: none;
+}
+
 .main .nav {
     display: flex;
     align-items: center;

@@ -1,0 +1,50 @@
+Query Template
+
+
+Company/Industry Overview:
+
+Provide a brief description of your company or industry:
+
+Key Factors/Variables:
+
+demand:
+cost:
+distance:
+capacity:
+
+Question format:
+
+[Specify the scenario or aspect of supply chain management you're seeking optimization for.]
+
+[Include any specific requirements or objectives you have.]
+
+Optimization Details:
+
+Optimization Method:
+
+[Specify the optimization model or technique you're interested in using, such as Economic Order Quantity (EOQ), Vehicle Routing Problem (VRP), etc.]
+
+Variables:
+
+List the variables involved in your optimization problem, 
+setup cost (SC)
+holding cost (H)
+demand rate (D)
+
+Objective:
+
+State the objective of your optimization, whether it's minimizing costs, maximizing throughput, meeting service level requirements, etc.]
+
+Additional Information:
+
+Constraints:
+
+[Specify any constraints or limitations you need to consider in your optimization problem, such as capacity constraints, service level targets, etc.]
+
+Data Sources:
+
+[Indicate where you're obtaining your data from, whether it's internal company data, market research, etc.]
+
+Deadline:
+
+[If applicable, specify any deadlines or timeframes for implementing the optimization solution.]

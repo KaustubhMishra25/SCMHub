@@ -12,12 +12,35 @@ const Main = () => {
         setInput(text);
     };
 
+    const handleDownload = () => {
+        const templateUrl = "src/config/user_data_template.txt";
+        const link = document.createElement("a");
+        link.href = templateUrl;
+        link.download = "UserTemplate-SCM"; // specify the filename
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+    const handleUpload = () => {
+        // Trigger the file input click event
+        document.getElementById('fileInput').click();
+      };
+    
+      const handleFileUpload = (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+    
+        // Handle file upload logic here
+        console.log('Uploaded file:', file);
+      };
     return (
         <div className='main'>
             <div className="nav">
 
 
                 <p><span style={{ fontSize: "30px", color: "#3103a3" }}>SCM</span> Hub </p>
+                <button className="download-button" onClick={handleDownload}>Download Template!</button>
 
             </div>
 
@@ -94,6 +117,20 @@ const Main = () => {
 
 
                             {input ? <img onClick={() => onSent()} src={assets.send_icon} alt="" /> : null}
+                            {
+                                input ?
+                                    <>
+                                        <input
+                                            id="fileInput"
+                                            type="file"
+                                            onChange={handleFileUpload}
+                                            style={{ display: 'none' }} // Hide the file input
+                                        />
+                                        <button className = "upload-button" onClick={handleUpload}><img src={assets.upload}/></button>
+                                    </>
+                                    : null
+                            }
+
                         </div>
                     </div>
 
