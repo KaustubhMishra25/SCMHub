@@ -1,0 +1,28 @@
+USER DATA
+
+
+Company/Industry Overview:
+
+Dairy Industry
+
+Key Factors/Variables:
+
+demand: 2500 litres/day
+cost: Rs. 116250 for 2500 litres
+distance: distributing over a 65km radius
+capacity: 5 distributin trucks each of 500 litre capacity
+setup cost: Rs. 3.5lakhs
+holding cost: Rs. 1lakhs
+inventory size: max facility capacity 3000litres of milk
+transportation cost: Rs. 1lakhs
+
+Objective: Try and increase customers, distribute over a larger scale
+
+Additional Information: none
+
+Constraints: Dealing with perishable items, i.e, milk and related products. Cannot store over a long period
+
+
+Data Sources: internal company data
+
+Deadline: none

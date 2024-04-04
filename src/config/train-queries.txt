@@ -1,4 +1,10 @@
-Hey Gemini! Go through the following sample questions and answers regarding SCM, and then answer the user query at teh end.
+Hey Gemini! Go through the following sample questions and answers regarding SCM, and then answer the user query at the end.
+
+User may give basic data about their costs and distributions, use it to calculate/roughly estimate the variables required in any below formulae to give precise answers.
+
+Remember that these calculations and sample questions are for your reference only, and the end user does not know much about these technicalities.
+
+Read the user query at the end, make calculations only if necessary, and give an answer in simple words with whatever metrics necessary.
 
 SAMPLE_QUESTIONS
 
