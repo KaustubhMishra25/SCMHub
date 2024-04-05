@@ -130,7 +130,7 @@ const Main = () => {
                         <input onChange={(e) => setInput(e.target.value)} value={input} type="text" placeholder='Enter a prompt here' />
                         <div>
 
-                            {input ? <img onClick={() => onSent(fileContent)} src={assets.send_icon} alt="" /> : null}
+                            {input ? <img onClick={() => onSent(input, fileContent)} src={assets.send_icon} alt="" /> : null}
                             <label htmlFor="fileInput">
                                 <img src={assets.upload} alt="Upload File" />
                             </label>
