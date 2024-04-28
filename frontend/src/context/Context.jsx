@@ -12,6 +12,8 @@ const ContextProvider = (props) => {
     const [showResult , setShowResult] = useState(false);
     const [loading, setLoading] = useState(false);
     const [resultData, setResultData] = useState("");
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [userData, setUserData] = useState(null);
 
 
     const delayText = (index,nextWord) =>{
@@ -64,8 +66,15 @@ const ContextProvider = (props) => {
         setInput("")
     }
 
-    
+    const login = (userData) => {
+        setIsLoggedIn(true);
+        setUserData(userData);
+    };
 
+    const logout = () => {
+        setIsLoggedIn(false);
+        setUserData(null);
+    };
     const contextValue = {
         prevPrompts,
         setPreviousPrompts,
@@ -77,7 +86,9 @@ const ContextProvider = (props) => {
         resultData,
         input,
         setInput,
-        newChat
+        newChat,
+        login,
+        logout
 
     }
     return (
