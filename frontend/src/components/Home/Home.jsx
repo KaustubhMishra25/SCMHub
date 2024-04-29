@@ -17,7 +17,7 @@ const Home = () => {
                     <Sidebar />
                     <Main />
                     </>
-                ): <Login />}
+                ): <Login onLogin={Context}/>}
             </div>
         </div>
     );
