@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import "./Login.css";
+import axios from "axios";
 
 const Login = ({ onLogin }) => {
     const [email, setEmail] = useState('');
@@ -7,6 +9,9 @@ const Login = ({ onLogin }) => {
     const [isLoginMode, setIsLoginMode] = useState(true);
     const [error, setError] = useState('');
 
+    const baseUrl = import.meta.env.VITE_BACKEND_URL
+
+    const navigate = useNavigate();
     const handleLogin = async () => {
         // Validate email and password
         if (!email || !password) {
@@ -16,67 +21,35 @@ const Login = ({ onLogin }) => {
 
         try {
             // Make API call to verify user credentials
-            const response = await fetch('/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password }),
-            });
-
-            if (response.ok) {
+            const response = await axios.post(`${baseUrl}/api/auth/login`, { email, password });
+            console.log(response);
+            if (response.status == 200) {
                 // User logged in successfully
-                const userData = await response.json();
+                const userData =  response.data.user;
                 onLogin(userData); // Pass user data to parent component
             } else {
                 // Handle login error
-                const errorMessage = await response.text();
+                const errorMessage = await response.message;
                 setError(errorMessage);
             }
+            navigate("/home");
         } catch (error) {
+            if(error.response.data.message == "User does not exist!"){
+                setError(error.response.data.message);
+                console.log("routing to signup!");
+                onLogin("User does not exist!");
+            }
             console.error('Error logging in:', error);
-            setError('An error occurred. Please try again later.');
+            setError(error.response.data.message);
         }
     };
 
-    const handleSignup = async () => {
-        // Validate email and password
-        if (!email || !password) {
-            setError('Please enter both email and password');
-            return;
-        }
-
-        try {
-            // Make API call to create new user
-            const response = await fetch('/api/signup', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password }),
-            });
-
-            if (response.ok) {
-                // User signed up successfully, clear form fields
-                setEmail('');
-                setPassword('');
-                setError('');
-                // Optionally, you can navigate the user to the next step of the signup process
-            } else {
-                // Handle signup error
-                const errorMessage = await response.text();
-                setError(errorMessage);
-            }
-        } catch (error) {
-            console.error('Error signing up:', error);
-            setError('An error occurred. Please try again later.');
-        }
-    };
 
     return (
         <>
+        <div className="login-container"> 
             <p className='nav'><span style={{ fontSize: "30px", color: "#3103a3" }}>SCM</span> Hub </p>
-            <div className="login-container"> 
+            
                 <h2>{isLoginMode ? 'Login' : 'Sign Up'}</h2>
                 <div>
                     <label>Email:</label>

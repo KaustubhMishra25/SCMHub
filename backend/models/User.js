@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const { json } = require('body-parser');
-const { object } = require('prop-types');
+const SALT_WORK_FACTOR = 10;
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -19,21 +18,21 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre('save', async function(next) {
-    try {
-        // Check if the password has been modified or is new
-        if (!this.isModified('password')) {
-            return next();
-        }
+    var user = this;
 
-        // Generate salt
-        const salt = await bcrypt.genSalt(10);
-        // Hash the password with the salt
-        const hashedPassword = await bcrypt.hash(this.password, salt);
-        // Replace plain text password with hashed password
-        this.password = hashedPassword;
+    // only hash the password if it has been modified (or is new)
+    if (!user.isModified('password')) return next();
+
+    // generate a salt
+    try {
+        const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
+        // hash the password using our new salt
+        const hash = await bcrypt.hash(user.password, salt);
+        // override the cleartext password with the hashed one
+        user.password = hash;
         next();
-    } catch (error) {
-        next(error);
+    } catch (err) {
+        return next(err);
     }
 });
 
@@ -41,11 +40,18 @@ userSchema.pre('save', async function(next) {
 userSchema.methods.comparePassword = async function(candidatePassword) {
     try {
         // Compare candidate password with hashed password in the database
-        return await bcrypt.compare(candidatePassword, this.password);
+        const isMatch = await bcrypt.compare(candidatePassword, this.password);
+        // Explicitly return the comparison result
+        return isMatch;
     } catch (error) {
-        throw new Error('Error comparing passwords');
+        // Handle potential errors during password comparison
+        console.error('Error comparing passwords:', error);
+        // You can throw a specific error or return a specific value here
+        // depending on your application logic (e.g., return false)
+        return false;
     }
 };
+
 
 const User = mongoose.model('User', userSchema);
 

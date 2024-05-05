@@ -1,7 +1,8 @@
 .login-container .error{
     font-size: medium;
     color: red;
-    margin-right: 115px;
+    margin-left: 125px;
+    margin-top: 15px;
 }
 .login-container {
     display: flex;
@@ -73,4 +74,13 @@
     top: 0; /* Position it at the top */
     left: 50%; /* Position horizontally at center */
     transform: translateX(-50%); /* Offset  to left by half its width */
+  }
+
+  .login-container textarea{
+    width: 400px;
+    height: 50px;
+  }
+
+  .submit{
+    margin-left: 151px;
   }
