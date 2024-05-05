@@ -92,9 +92,7 @@ const Main = (userData) => {
                         <div>
 
                             {input ? <img onClick={() => onSent(input, userData)} src={assets.send_icon} alt="" /> : null}
-                            <label htmlFor="fileInput">
-                                <img src={assets.upload} alt="Upload File" />
-                            </label>
+                          
 
                         </div>
                     </div>
