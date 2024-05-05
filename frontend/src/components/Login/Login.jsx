@@ -1,17 +1,14 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import "./Login.css";
 import axios from "axios";
 
 const Login = ({ onLogin }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isLoginMode, setIsLoginMode] = useState(true);
     const [error, setError] = useState('');
 
-    const baseUrl = import.meta.env.VITE_BACKEND_URL
-
-    const navigate = useNavigate();
+    const baseUrl = import.meta.env.VITE_BACKEND_URL;
     const handleLogin = async () => {
         // Validate email and password
         if (!email || !password) {
@@ -32,7 +29,6 @@ const Login = ({ onLogin }) => {
                 const errorMessage = await response.message;
                 setError(errorMessage);
             }
-            navigate("/home");
         } catch (error) {
             if(error.response.data.message == "User does not exist!"){
                 setError(error.response.data.message);
@@ -44,13 +40,15 @@ const Login = ({ onLogin }) => {
         }
     };
 
-
+    const handleSwitch = async () => {
+        onLogin("User does not exist!");
+    }
     return (
         <>
         <div className="login-container"> 
             <p className='nav'><span style={{ fontSize: "30px", color: "#3103a3" }}>SCM</span> Hub </p>
             
-                <h2>{isLoginMode ? 'Login' : 'Sign Up'}</h2>
+                <h2> 'Login' </h2>
                 <div>
                     <label>Email:</label>
                     <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -61,12 +59,10 @@ const Login = ({ onLogin }) => {
                 </div>
                 <div className="error">{error}</div>
                 <div>
-                    <button onClick={isLoginMode ? handleLogin : handleSignup}>{isLoginMode ? 'Login' : 'Sign Up'}</button>
+                    <button onClick={handleLogin}>'Login' </button>
                 </div>
                 <div>
-                    <button onClick={() => setIsLoginMode((prevMode) => !prevMode)}>
-                        {isLoginMode ? 'Switch to Sign Up' : 'Switch to Login'}
-                    </button>
+                    <button onClick={handleSwitch}>Don't have an account? Sign Up!</button>
                 </div>
             </div>
         </>

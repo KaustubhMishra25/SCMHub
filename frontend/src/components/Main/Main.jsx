@@ -4,7 +4,7 @@ import { assets } from '../../assets/assets';
 import { Context } from '../../context/Context';
 
 
-const Main = () => {
+const Main = (userData) => {
     const [fileContent, setFileContent] = useState('');
 
     const { onSent, recentPrompt, showResult, loading, resultData, setInput, input } = useContext(Context)
@@ -13,50 +13,11 @@ const Main = () => {
         setInput(text);
     };
 
-    const handleDownload = () => {
-        const templateUrl = "src/config/user_data_template.txt";
-        const link = document.createElement("a");
-        link.href = templateUrl;
-        link.download = "UserTemplate-SCM"; // specify the filename
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
-
-    const handleUpload = (event) => {
-        const file = event.target.files[0];
-        console.log(file);
-
-        if (!file) {
-            return; // Handle potential user cancellation
-        }
-
-        if (file.type !== 'text/plain') {
-            alert('Please upload a text file');
-            return;
-        }
-
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            setFileContent(e.target.result);
-            console.log(fileContent);
-        };
-        reader.onerror = (error) => {
-            console.error('Error reading file:', error);
-            alert('Failed to read file content'); // Inform user about error
-        };
-
-        reader.readAsText(file);
-    };
-
+    
     return (
         <div className='main'>
             <div className="nav">
-
-
                 <p><span style={{ fontSize: "30px", color: "#3103a3" }}>SCM</span> Hub </p>
-                <button className="download-button" onClick={handleDownload}>Download Template!</button>
-
             </div>
 
             <div className="main-container">
@@ -130,17 +91,10 @@ const Main = () => {
                         <input onChange={(e) => setInput(e.target.value)} value={input} type="text" placeholder='Enter a prompt here' />
                         <div>
 
-                            {input ? <img onClick={() => onSent(input, fileContent)} src={assets.send_icon} alt="" /> : null}
+                            {input ? <img onClick={() => onSent(input, userData)} src={assets.send_icon} alt="" /> : null}
                             <label htmlFor="fileInput">
                                 <img src={assets.upload} alt="Upload File" />
                             </label>
-                            <input
-                                id="fileInput"
-                                type="file"
-                                onChange={handleUpload}
-                                accept=".txt" // Only allow text files
-                                style={{ display: 'none' }} // Hide the file input visually
-                            />
 
                         </div>
                     </div>

@@ -33,7 +33,7 @@ const Home = () => {
                 {isLoggedIn ? (
                     <>
                     <Sidebar />
-                    <Main />
+                    <Main userData={userData}/>
                     </>
                 ): <Login onLogin={onLogin}/>}
                 </>}
