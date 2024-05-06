@@ -18,7 +18,7 @@ const Login = ({ onLogin }) => {
 
         try {
             // Make API call to verify user credentials
-            const response = await axios.post(`${baseUrl}/api/auth/login`, { email, password });
+            const response = await axios.post(`${baseUrl}/auth/login/`, { email, password });
             console.log(response);
             if (response.status == 200) {
                 // User logged in successfully
@@ -30,8 +30,9 @@ const Login = ({ onLogin }) => {
                 setError(errorMessage);
             }
         } catch (error) {
+            console.error(error);
             if(error.response.data.message == "User does not exist!"){
-                setError(error.response.data.message);
+                setError(error.message);
                 console.log("routing to signup!");
                 onLogin("User does not exist!");
             }

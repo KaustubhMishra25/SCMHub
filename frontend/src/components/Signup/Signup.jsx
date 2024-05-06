@@ -38,7 +38,7 @@ const Signup = ({ onSignup }) => {
                 password,
                 businessDetails
             };
-            const response = await axios.post(`${baseUrl}/api/auth/signup`, userData);
+            const response = await axios.post(`${baseUrl}/auth/signup/`, userData);
             
             if (response.status == 201) {
                 // Form data submitted successfully, clear form fields
