@@ -1,8 +1,11 @@
 /* eslint-disable react/prop-types */
 import { createContext, useState } from "react";
 import runChat from "../config/gemini";
+import axios from "axios";
 
 export const Context = createContext();
+
+const baseUrl = import.meta.env.VITE_BACKEND_URL;
 
 const ContextProvider = (props) => {
 
@@ -28,16 +31,16 @@ const ContextProvider = (props) => {
     }
     
 
-    const onSent = async (prompt, content) => {
+    const onSent = async (prompt, userData) => {
         setResultData("")
         setLoading(true);
         setShowResult(true);
         let response;
-        if(content !== undefined){
-            prompt = "\n\nUSER DATA\n"+content+"\n\nUSER QUESTION\n"+prompt;
-        }
+        // if(content !== undefined){
+        //     prompt = "\n\nUSER DATA\n"+content+"\n\nUSER QUESTION\n"+prompt;
+        // }
         if(prompt !== undefined){
-            response = await runChat(prompt);
+            response = await axios.post(`${baseUrl}/api/ai/gemini`, { prompt, userData });
             setRecentPrompt(prompt)
         }
         else{
