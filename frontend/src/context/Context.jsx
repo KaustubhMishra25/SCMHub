@@ -31,7 +31,7 @@ const ContextProvider = (props) => {
     }
     
 
-    const onSent = async (prompt, userData) => {
+    const onSent = async (prompt, jsonData) => {
         setResultData("")
         setLoading(true);
         setShowResult(true);
@@ -39,18 +39,27 @@ const ContextProvider = (props) => {
         // if(content !== undefined){
         //     prompt = "\n\nUSER DATA\n"+content+"\n\nUSER QUESTION\n"+prompt;
         // }
+        console.log(jsonData);
+        const userData = {
+            businessName: jsonData.userData.business_details.businessName,
+            businessType: jsonData.userData.business_details.businessType,
+            businessDescription: jsonData.userData.business_details.businessDescription,
+            transportationMethods: jsonData.userData.business_details.transportationMethods,
+            constraints: jsonData.userData.business_details.constraints
+        };
+
         if(prompt !== undefined){
-            response = await axios.post(`${baseUrl}/api/ai/gemini`, { prompt, userData });
+            response = await axios.post(`${baseUrl}/ai/get-response/`, { prompt, userData });
             setRecentPrompt(prompt)
         }
         else{
             setPreviousPrompts(prev=>[...prev,input])          
             setRecentPrompt(input)
-            response = await runChat(input)
+            response = await axios.post(`${baseUrl}/ai/get-response/`, { input, userData });
         }
         
        
-        let responseArray = response.split("**");
+        let responseArray = response.data.message.split("\n");
         let newResponse="";
         for(let i=0; i< responseArray.length; i++){
             if(i==0 || i%2 !==1){
