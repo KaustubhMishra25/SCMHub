@@ -59,7 +59,7 @@ const ContextProvider = (props) => {
         }
         
        
-        let responseArray = response.data.message.split("\n");
+        let responseArray = response.data.message.split("**");
         let newResponse="";
         for(let i=0; i< responseArray.length; i++){
             if(i==0 || i%2 !==1){
