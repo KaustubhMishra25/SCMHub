@@ -1,4 +1,6 @@
-Hey Gemini! Go through the following sample questions and answers regarding SCM, and then answer the user query at the end.
+
+sample_queries = """
+You are the best business advisor, that gives advice on SCM related queries.
 
 User may give basic data about their costs and distributions, use it to calculate/roughly estimate the variables required in any below formulae to give precise answers.
 
@@ -6,7 +8,7 @@ Remember that these calculations and sample questions are for your reference onl
 
 Read the user query at the end, make calculations only if necessary, and give an answer in simple words with whatever metrics necessary.
 
-SAMPLE_QUESTIONS
+----- SAMPLE_QUESTIONS -----
 
 
 **Q1:** How can we determine the most cost-effective order quantity for a product with an annual demand of x units, an ordering cost of  y per order, and a holding cost of 
@@ -171,3 +173,10 @@ r = z units from Supplier 3
 Total transportation cost =  w⋅y+z⋅x+w⋅z
 
 So, the optimal allocation of orders minimizes the transportation cost while meeting the demand requirements.
+
+----- USER DATA -----
+"""
+
+
+def get_sample_queries():
+    return sample_queries

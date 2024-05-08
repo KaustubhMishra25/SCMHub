@@ -6,11 +6,11 @@ load_dotenv()
 
 client = anthropic.Anthropic(api_key=os.environ.get('CLAUDE_API_KEY'))
 
-def get_response_claude(prompt, userData):
+def get_response_claude(prompt, userData, sampleQueries):
     response = client.messages.create(
         model="claude-2.1",
         max_tokens=1024,
-        system="You are the best business advisor, that gives advice on SCM related queries. First here is the business data: \n"+userData+"\n", # <-- system prompt
+        system=sampleQueries+"\n"+userData,
         messages=[
             {"role": "user", "content": prompt} # <-- user prompt
         ]

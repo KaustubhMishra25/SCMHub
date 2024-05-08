@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { createContext, useState } from "react";
-import runChat from "../config/gemini";
 import axios from "axios";
 
 export const Context = createContext();
